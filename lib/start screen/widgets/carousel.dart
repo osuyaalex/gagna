@@ -34,9 +34,20 @@ class _CarouselWidgetState extends State<CarouselWidget> {
   @override
   Widget build(BuildContext context) {
     List<Widget> titles =[
-      SizedBox(
+      Container(
+        height: MediaQuery.of(context).size.height,
+        width: MediaQuery.of(context).size.width,
+        decoration: BoxDecoration(
+          image: DecorationImage(
+              image: AssetImage('assets/unsplash_4ojhpgKpS68.png',),
+            fit: BoxFit.fill
+          )
+        ),
         child: Column(
           children: [
+            SizedBox(
+              height: MediaQuery.of(context).size.height*0.55,),
+            SizedBox(height: 25,),
             SizedBox(
               width: MediaQuery.of(context).size.width*0.9,
               child: const Text('Tailored Investment Options for Every Investor',
@@ -61,9 +72,20 @@ class _CarouselWidgetState extends State<CarouselWidget> {
           ],
         ),
       ),
-      SizedBox(
+     Container(
+       height: MediaQuery.of(context).size.height,
+       width: MediaQuery.of(context).size.width,
+       decoration: BoxDecoration(
+         image: DecorationImage(
+             image: AssetImage('assets/unsplash_tf2WLWYFtyg.png'),
+           fit: BoxFit.fill
+         )
+       ),
         child: Column(
           children: [
+            SizedBox(
+              height: MediaQuery.of(context).size.height*0.55,),
+            SizedBox(height: 25,),
             SizedBox(
               width: MediaQuery.of(context).size.width*0.9,
               child: const Text('Seamless Onboarding Process',
@@ -88,9 +110,19 @@ class _CarouselWidgetState extends State<CarouselWidget> {
           ],
         ),
       ),
-      SizedBox(
+      Container(
+        height: MediaQuery.of(context).size.height,
+        width: MediaQuery.of(context).size.width,
+        decoration: BoxDecoration(
+          image: DecorationImage(image: AssetImage('assets/unsplash_hDJT_ERrB-w.png'),
+          fit: BoxFit.fill
+          )
+        ),
         child: Column(
           children: [
+            SizedBox(
+              height: MediaQuery.of(context).size.height*0.55,),
+            SizedBox(height: 25,),
             SizedBox(
               width: MediaQuery.of(context).size.width*0.9,
               child: const Text('Transparent Investment Insights',
@@ -127,44 +159,33 @@ class _CarouselWidgetState extends State<CarouselWidget> {
         ),
       );
     }
-    return  Column(
+    return  Stack(
       children: [
-        Container(
-          height:_deviceInfo >27?
-          MediaQuery.of(context).size.width*0.45:MediaQuery.of(context).size.width*0.5,
-          //color: Colors.red,
-          child: CarouselSlider.builder(
-            options: CarouselOptions(
-                viewportFraction: 1,
-                aspectRatio: 16/9,
-                height: MediaQuery.of(context).size.height,
-                autoPlay: true,
-                initialPage: 0,
-                enableInfiniteScroll: false,
-                enlargeCenterPage: false,
-                onPageChanged: (index, reason){
-                  setState(() {
-                    _activeIndex = index;
-                  });
-                }
-            ),
-            itemCount: titles.length,
-            itemBuilder: (BuildContext context, int index, int realIndex) {
-              return titles[index];
-            },
+        CarouselSlider.builder(
+          options: CarouselOptions(
+              viewportFraction: 1,
+              aspectRatio: 16/9,
+              height: MediaQuery.of(context).size.height,
+              autoPlay: true,
+              initialPage: 0,
+              enableInfiniteScroll: false,
+              enlargeCenterPage: false,
+              onPageChanged: (index, reason){
+                setState(() {
+                  _activeIndex = index;
+                });
+              }
           ),
+          itemCount: titles.length,
+          itemBuilder: (BuildContext context, int index, int realIndex) {
+            return titles[index];
+          },
         ),
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: SizedBox(
-            width: MediaQuery.of(context).size.width*0.9,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                buildIndicator()
-              ],
-            ),
-          ),
+        Positioned(
+          bottom:_deviceInfo > 27?
+          MediaQuery.of(context).size.width*0.35:MediaQuery.of(context).size.width*0.23,
+            left: 25,
+            child: buildIndicator()
         )
       ],
     );

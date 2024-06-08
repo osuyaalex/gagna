@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:gagna/main%20screens/main_home.dart';
+import 'package:gagna/start%20screen/home.dart';
 import 'package:gagna/start%20screen/splash_screen.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 
@@ -36,17 +39,34 @@ class MyApp extends StatelessWidget {
         //  systemNavigationBarColor: Colors.transparent,
       ),
     );
-    return MaterialApp(
+    final router = GoRouter(
+      initialLocation:'/' ,
+      routes: [
+        GoRoute(
+            path: '/',
+            builder: (_, __) => SplashScreen()
+        ),
+        GoRoute(
+            path: '/deeplink/main',
+            builder: (_, __) => MainHome()
+        ),
+        GoRoute(
+            path: '/deeplink/homepage',
+            builder: (_, __) => HomePage()
+        ),
+      ],
+    );
+    return MaterialApp.router(
+      routerConfig: router,
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
         textTheme: GoogleFonts.dmSansTextTheme(
           Theme.of(context).textTheme,
         ),
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(seedColor: Color(0xff005E5E)),
         useMaterial3: true,
       ),
-      home:  SplashScreen(),
       builder: EasyLoading.init(),
     );
   }

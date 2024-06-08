@@ -4,7 +4,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gagna/start%20screen/password_page.dart';
 import 'package:gagna/start%20screen/widgets/elevated_button.dart';
 import 'package:gagna/utilities/shot_snackbar.dart';
-import 'package:gagna/utilities/snackbar.dart';
 import 'package:intl/intl.dart';
 import 'package:phone_form_field/phone_form_field.dart';
 
@@ -103,7 +102,7 @@ class _InformationPageState extends State<InformationPage> {
                       return null;
                     },
                     decoration: InputDecoration(
-
+                      errorStyle: const TextStyle(fontSize: 0.01),
                       hintStyle: TextStyle(
                           fontSize: 12.5
                       ),
@@ -147,7 +146,6 @@ class _InformationPageState extends State<InformationPage> {
                 SizedBox(
                   height: MediaQuery.of(context).size.width*0.12,
                   child: TextFormField(
-
                     controller: _lastName,
                     validator: (v){
                       if(v!.isEmpty){
@@ -156,7 +154,7 @@ class _InformationPageState extends State<InformationPage> {
                       return null;
                     },
                     decoration: InputDecoration(
-
+                      errorStyle: const TextStyle(fontSize: 0.01),
                       hintStyle: TextStyle(
                           fontSize: 12.5
                       ),
@@ -206,6 +204,7 @@ class _InformationPageState extends State<InformationPage> {
                     shouldFormat: true,
                     defaultCountry: IsoCode.NG,
                     decoration:  InputDecoration(
+                      errorStyle: const TextStyle(fontSize: 0.01),
                       contentPadding: EdgeInsets.only(top: 5),
                       hintStyle: TextStyle(
                           fontSize: 12.5
@@ -279,6 +278,7 @@ class _InformationPageState extends State<InformationPage> {
                     },
                     readOnly: true,
                     decoration: InputDecoration(
+                      errorStyle: const TextStyle(fontSize: 0.01),
                       hintStyle: TextStyle(
                           fontSize: 12.5
                       ),
@@ -323,6 +323,7 @@ class _InformationPageState extends State<InformationPage> {
                   height: MediaQuery.of(context).size.width*0.12,
                   child: DropdownButtonFormField(
                     decoration: InputDecoration(
+                      errorStyle: const TextStyle(fontSize: 0.01),
                       contentPadding:const EdgeInsets.only(top: 5, left: 10),
                       hintStyle: const TextStyle(
                           fontSize: 12.5
@@ -442,24 +443,26 @@ class _InformationPageState extends State<InformationPage> {
                     buttonColor: const Color(0xff005E5E),
                     text: 'Continue',
                     onPressed: (){
-                      if(_firstName.text.isNotEmpty && _lastName.text.isNotEmpty && _dob.text.isNotEmpty
-                      && phone != null && _gender != null){
-                        if(_privacy == true){
-                          Navigator.push(context, MaterialPageRoute(builder: (context){
-                            return  PasswordPage(
-                              email: widget.email,
-                              otp: widget.otp,
-                              lastName: _lastName.text,
-                              firstName: _firstName.text,
-                              gender: _gender!,
-                              phoneNumber: phone!.international,
-                            );
-                          }));
+                      if(_key.currentState!.validate()){
+                        if(_gender != null){
+                          if(_privacy == true){
+                            Navigator.push(context, MaterialPageRoute(builder: (context){
+                              return  PasswordPage(
+                                email: widget.email,
+                                otp: widget.otp,
+                                lastName: _lastName.text,
+                                firstName: _firstName.text,
+                                gender: _gender!,
+                                phoneNumber: phone!.international,
+                              );
+                            }));
+                          }else{
+                            shortSnack(context, "Agree to the privacy policy");
+                          }
                         }else{
-                          shortSnack(context, "Agree to the privacy policy");
+                          shortSnack(context, "Select a gender");
                         }
-                      }else{
-                        snack(context, "Fill in all the respective fields");
+
                       }
                     },
                     textColor: Colors.white,

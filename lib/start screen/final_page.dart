@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:gagna/main%20screens/main_home.dart';
 import 'package:gagna/start%20screen/widgets/elevated_button.dart';
 
 class FinalPage extends StatefulWidget {
@@ -68,7 +69,7 @@ class _FinalPageState extends State<FinalPage> {
                 text: 'Go to homepage',
                 onPressed: (){
                   Navigator.push(context, MaterialPageRoute(builder: (context){
-                    return FinalPage();
+                    return MainHome();
                   }));
                 },
                 textColor: Colors.white,

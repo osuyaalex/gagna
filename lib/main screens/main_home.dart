@@ -3,7 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gagna/main%20screens/screens/feeds/feeds.dart';
 import 'package:gagna/main%20screens/screens/home/home.dart';
 import 'package:gagna/main%20screens/screens/portfolio/portfolio.dart';
-import 'package:gagna/main%20screens/screens/profile.dart';
+import 'package:gagna/main%20screens/screens/profile/profile.dart';
 
 class MainHome extends StatefulWidget {
   const MainHome({super.key});

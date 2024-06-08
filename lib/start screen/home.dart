@@ -34,35 +34,21 @@ class _HomePageState extends State<HomePage> {
   }
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Scaffold(
-          backgroundColor: Colors.white,
-          appBar: AppBar(
-            backgroundColor: Colors.white,
-          ),
-          body: Column(
-            children: [
-              Container(
-                height: MediaQuery.of(context).size.height*0.45,
-                color: Colors.grey.shade200,
-              ),
-              SizedBox(height: 25,),
-              CarouselWidget()
-            ],
-          ),
-        ),
-        Align(
-          alignment: Alignment.bottomCenter,
-          child: Container(
-            height: 100,
-            padding:_deviceInfo >27? EdgeInsets.only(bottom: MediaQuery.of(context).size.width*0.17):null,
-            width: MediaQuery.of(context).size.width,
-            //color: Colors.red,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Button(
+    return Scaffold(
+      body: Stack(
+        children: [
+          CarouselWidget(),
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: Container(
+              height: 100,
+              padding:_deviceInfo >27? EdgeInsets.only(bottom: MediaQuery.of(context).size.width*0.17):EdgeInsets.only(top: MediaQuery.of(context).size.width*0.05),
+              width: MediaQuery.of(context).size.width,
+              //color: Colors.red,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Button(
                     buttonColor: const Color(0xff005E5E).withOpacity(0.2),
                     text: "Login",
                     onPressed: (){
@@ -71,10 +57,10 @@ class _HomePageState extends State<HomePage> {
                       }));
                     },
                     textColor: const Color(0xff005E5E),
-                  width: MediaQuery.of(context).size.width*0.3,
-                ),
-                SizedBox(width: 20,),
-                Button(
+                    width: MediaQuery.of(context).size.width*0.3,
+                  ),
+                  SizedBox(width: 20,),
+                  Button(
                     buttonColor: const Color(0xff005E5E),
                     text: "Create Account",
                     onPressed: (){
@@ -83,13 +69,14 @@ class _HomePageState extends State<HomePage> {
                       }));
                     },
                     textColor:  Colors.white,
-                  width: MediaQuery.of(context).size.width*0.45,
-                ),
-              ],
+                    width: MediaQuery.of(context).size.width*0.45,
+                  ),
+                ],
+              ),
             ),
-          ),
-        )
-      ],
+          )
+        ],
+      ),
     );
   }
 }

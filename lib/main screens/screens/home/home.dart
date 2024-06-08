@@ -190,7 +190,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               SizedBox(
                 height: _deviceInfo >27?
-                MediaQuery.of(context).size.height*0.29:MediaQuery.of(context).size.height*0.38,
+                MediaQuery.of(context).size.height*0.29:MediaQuery.of(context).size.height*0.4,
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
                   itemCount: 10,
@@ -293,9 +293,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     }
                 ),
               ),
-              SizedBox(
-                height: 10,
-              ),
+
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 14.0),
                 child: Row(

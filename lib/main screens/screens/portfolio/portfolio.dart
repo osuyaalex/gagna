@@ -204,7 +204,7 @@ class _PortfolioScreenState extends State<PortfolioScreen>with SingleTickerProvi
                 ),
                 Positioned(
                   left: 18,
-                  top: 40,
+                  top: 38,
                   child: Row(
                     children: [
                       Padding(
@@ -227,7 +227,7 @@ class _PortfolioScreenState extends State<PortfolioScreen>with SingleTickerProvi
                 ),
                 Positioned(
                   left: 18,
-                  bottom: 12,
+                  bottom: 7,
                   child: Row(
                     children: [
                       Padding(

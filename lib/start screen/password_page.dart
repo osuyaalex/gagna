@@ -162,7 +162,7 @@ class _PasswordPageState extends State<PasswordPage> {
                       }
                       return null;
                     },
-                    obscureText: _obscureText,
+                    obscureText: _obscureComfirmText,
                     decoration: InputDecoration(
                       suffixIcon: IconButton(
                           onPressed: (){
@@ -170,7 +170,7 @@ class _PasswordPageState extends State<PasswordPage> {
                               _obscureComfirmText = !_obscureComfirmText;
                             });
                           },
-                          icon: _obscureText? Icon(Icons.visibility_outlined, color: Colors.grey.shade400,):Icon(Icons.visibility_off_outlined,color: Colors.grey.shade400,)
+                          icon: _obscureComfirmText? Icon(Icons.visibility_outlined, color: Colors.grey.shade400,):Icon(Icons.visibility_off_outlined,color: Colors.grey.shade400,)
                       ),
             
                       hintStyle: TextStyle(
