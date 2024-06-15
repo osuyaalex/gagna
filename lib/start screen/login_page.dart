@@ -19,6 +19,7 @@ class _LoginPageState extends State<LoginPage> {
   TextEditingController _email = TextEditingController();
   TextEditingController _password = TextEditingController();
   bool _obscureText = true;
+  bool _loadingIndicator = false;
   GlobalKey<FormState> _key = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
@@ -196,7 +197,9 @@ class _LoginPageState extends State<LoginPage> {
                     text: 'Login',
                     onPressed: (){
                       if(_key.currentState!.validate()){
-                        EasyLoading.show();
+                        setState(() {
+                          _loadingIndicator = true;
+                        });
                         Network().login(
                             _email.text,
                             _password.text, context).then((value)async{
@@ -209,17 +212,20 @@ class _LoginPageState extends State<LoginPage> {
                                   return MainHome();
                                 }));
                               }else if(value.success! == false){
-                                EasyLoading.dismiss();
+                                setState(() {
+                                  _loadingIndicator = false;
+                                });
                                 snack(context, value.error!.message!.detail!);
                               }
                         });
                       }else{
-                        EasyLoading.dismiss();
                         snack(context, 'Fields are empty');
                       }
                     },
                     textColor: Colors.white,
-                    width: MediaQuery.of(context).size.width
+                    width: MediaQuery.of(context).size.width,
+                  minSize: false,
+                  textOrIndicator: _loadingIndicator,
                 ),
                 SizedBox(height: 25,),
                 RichText(

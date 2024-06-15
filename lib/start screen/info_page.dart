@@ -466,7 +466,9 @@ class _InformationPageState extends State<InformationPage> {
                       }
                     },
                     textColor: Colors.white,
-                    width: MediaQuery.of(context).size.width
+                    width: MediaQuery.of(context).size.width,
+                  minSize: false,
+                  textOrIndicator: false,
                 ),
                 SizedBox(height: 25,),
 

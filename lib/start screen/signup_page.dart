@@ -18,6 +18,7 @@ class SignUpPage extends StatefulWidget {
 class _SignUpPageState extends State<SignUpPage> {
   TextEditingController _email = TextEditingController();
   GlobalKey<FormState> _key = GlobalKey<FormState>();
+  bool _loadingIndicator = false;
   @override
   Widget build(BuildContext context) {
     return  Form(
@@ -130,7 +131,9 @@ class _SignUpPageState extends State<SignUpPage> {
                   onPressed: (){
 
                     if (_key.currentState!.validate()) {
-                      EasyLoading.show();
+                      setState(() {
+                        _loadingIndicator = true;
+                      });
                       Network().emailOtp(_email.text, context).then((value) {
                         if (value.success!) {
                           EasyLoading.dismiss();
@@ -139,7 +142,9 @@ class _SignUpPageState extends State<SignUpPage> {
                             return VerificationPage(email: _email.text);
                           }));
                         } else {
-                          EasyLoading.dismiss();
+                          setState(() {
+                            _loadingIndicator = false;
+                          });
                           var errorDetail = value.error!.message!.detail;
                           if (errorDetail is String) {
                             shortSnack(context, errorDetail);
@@ -153,7 +158,9 @@ class _SignUpPageState extends State<SignUpPage> {
                     }
                   },
                   textColor: Colors.white,
-                  width: MediaQuery.of(context).size.width
+                  width: MediaQuery.of(context).size.width,
+                minSize: false,
+                textOrIndicator: _loadingIndicator,
               ),
 
             ],

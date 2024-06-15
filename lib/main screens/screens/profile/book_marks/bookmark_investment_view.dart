@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:gagna/main%20screens/screens/feeds/payment_information.dart';
 import 'package:gagna/start%20screen/widgets/elevated_button.dart';
-class InvestmentView extends StatefulWidget {
-  const InvestmentView({super.key});
+class BookmarkInvestmentView extends StatefulWidget {
+  const BookmarkInvestmentView({super.key});
 
   @override
-  State<InvestmentView> createState() => _InvestmentViewState();
+  State<BookmarkInvestmentView> createState() => _BookmarkInvestmentViewState();
 }
 
-class _InvestmentViewState extends State<InvestmentView> {
+class _BookmarkInvestmentViewState extends State<BookmarkInvestmentView> {
   final String _niceHouse = 'https://thumbor.forbes.com/thumbor/fit-in/x/https://www.forbes.com/home-improvement/wp-content/uploads/2022/08/kiawah_island-realtor.jpg';
   @override
   Widget build(BuildContext context) {
@@ -16,10 +16,10 @@ class _InvestmentViewState extends State<InvestmentView> {
       appBar: AppBar(
         title: Center(
           child: Text('Investment View',
-          style: TextStyle(
-            fontSize: 19,
-            fontWeight: FontWeight.w600
-          ),
+            style: TextStyle(
+                fontSize: 19,
+                fontWeight: FontWeight.w600
+            ),
           ),
         ),
       ),
@@ -33,10 +33,10 @@ class _InvestmentViewState extends State<InvestmentView> {
                 height: MediaQuery.of(context).size.width*0.8,
                 width: MediaQuery.of(context).size.width,
                 decoration: BoxDecoration(
-                  image: DecorationImage(
-                      image: NetworkImage(_niceHouse),
-                    fit: BoxFit.fill
-                  )
+                    image: DecorationImage(
+                        image: NetworkImage(_niceHouse),
+                        fit: BoxFit.fill
+                    )
                 ),
               ),
               SizedBox(height: 15,),
@@ -51,14 +51,14 @@ class _InvestmentViewState extends State<InvestmentView> {
                   Container(
                     padding: EdgeInsets.symmetric(horizontal: 10,vertical: 4),
                     decoration: BoxDecoration(
-                      color: Color(0xffFFF8DF),
-                      borderRadius: BorderRadius.circular(10)
+                        color: Color(0xffFFF8DF),
+                        borderRadius: BorderRadius.circular(10)
                     ),
                     child: Center(
                       child: Text('shares sold out 68%',
-                      style: TextStyle(
-                        fontSize: 11
-                      ),
+                        style: TextStyle(
+                            fontSize: 11
+                        ),
                       ),
                     ),
                   )
@@ -97,15 +97,15 @@ class _InvestmentViewState extends State<InvestmentView> {
               Text('data'),
               SizedBox(height: 30,),
               Button(
-                  buttonColor: Color(0xff005E5E),
-                  text: 'Buy Share',
-                  onPressed: (){
-                    Navigator.push(context, MaterialPageRoute(builder: (context){
-                      return PaymentInformation();
-                    }));
-                  },
-                  textColor: Colors.white,
-                  width: MediaQuery.of(context).size.width,
+                buttonColor: Color(0xff005E5E),
+                text: 'Buy Share',
+                onPressed: (){
+                  Navigator.push(context, MaterialPageRoute(builder: (context){
+                    return PaymentInformation();
+                  }));
+                },
+                textColor: Colors.white,
+                width: MediaQuery.of(context).size.width,
                 minSize: false,
                 textOrIndicator: false,
               )

@@ -73,7 +73,9 @@ class _FinalPageState extends State<FinalPage> {
                   }));
                 },
                 textColor: Colors.white,
-                width: MediaQuery.of(context).size.width
+                width: MediaQuery.of(context).size.width,
+              minSize: false,
+              textOrIndicator: false,
             ),
           ],
         ),

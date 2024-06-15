@@ -25,6 +25,7 @@ class _VerificationPageState extends State<VerificationPage> {
   int _start = 600;
   Timer? _timer;
   String? _otp;
+  bool _loadingIndicator = false;
   void _startTimer() {
     const oneSec = Duration(seconds: 1);
     _timer = Timer.periodic(
@@ -172,7 +173,9 @@ class _VerificationPageState extends State<VerificationPage> {
                 onPressed: (){
                   EasyLoading.show();
                   if(_otp != null){
-                    EasyLoading.show();
+                    setState(() {
+                      _loadingIndicator = true;
+                    });
                     Network().verification_otp(widget.email, _otp!, context).then((value){
                       if (value.success!) {
                         EasyLoading.dismiss();
@@ -181,7 +184,9 @@ class _VerificationPageState extends State<VerificationPage> {
                           return InformationPage(email: widget.email, otp: _otp!);
                         }));
                       } else {
-                        EasyLoading.dismiss();
+                        setState(() {
+                          _loadingIndicator = false;
+                        });
                         var errorDetail = value.error!.message!.detail;
                         if (errorDetail is String) {
                           shortSnack(context, errorDetail);
@@ -195,7 +200,9 @@ class _VerificationPageState extends State<VerificationPage> {
                   }
                 },
                 textColor: Colors.white,
-                width: MediaQuery.of(context).size.width
+                width: MediaQuery.of(context).size.width,
+              minSize: false,
+              textOrIndicator: _loadingIndicator,
             ),
             Text(widget.email,style: TextStyle(color: Colors.black),),
             Text(_otp??'')

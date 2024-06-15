@@ -58,6 +58,8 @@ class _HomePageState extends State<HomePage> {
                     },
                     textColor: const Color(0xff005E5E),
                     width: MediaQuery.of(context).size.width*0.3,
+                    minSize: false,
+                    textOrIndicator: false,
                   ),
                   SizedBox(width: 20,),
                   Button(
@@ -70,6 +72,8 @@ class _HomePageState extends State<HomePage> {
                     },
                     textColor:  Colors.white,
                     width: MediaQuery.of(context).size.width*0.45,
+                    minSize: false,
+                    textOrIndicator: false,
                   ),
                 ],
               ),

@@ -1,7 +1,11 @@
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:gagna/main%20screens/screens/profile/security_privacy.dart';
+import 'package:gagna/main%20screens/screens/profile/book_marks/bookmark_library.dart';
+import 'package:gagna/main%20screens/screens/profile/edit/edit_profile.dart';
+import 'package:gagna/main%20screens/screens/profile/security_and_privacy/security_privacy.dart';
+import 'package:gagna/main%20screens/screens/profile/verify_id/verify_id.dart';
+import 'package:gagna/main%20screens/screens/profile/withdrawal/withdrawal.dart';
 import 'package:gagna/start%20screen/widgets/elevated_button.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -47,6 +51,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         title:Padding(
           padding: const EdgeInsets.only(left: 10.0, top: 10),
           child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
                 height: 50,
@@ -77,12 +82,24 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         color: Colors.black
                     ),
                   ),
+                  Text('example@gmail.com',
+                    style: TextStyle(
+                        color: Colors.black,
+                      fontSize: 14
+                    ),
+                  ),
                   Button(
                       buttonColor: Color(0xff005E5E),
                       text: 'Edit Profile',
-                      onPressed: (){},
+                      onPressed: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (context){
+                          return EditProfile();
+                        }));
+                      },
                       textColor: Colors.white,
-                      width: _deviceInfo >27?MediaQuery.of(context).size.width*0.3:MediaQuery.of(context).size.width*0.36
+                      width: _deviceInfo >27?MediaQuery.of(context).size.width*0.3:MediaQuery.of(context).size.width*0.36,
+                    minSize: true,
+                    textOrIndicator: false,
                   )
                 ],
               )
@@ -96,24 +113,31 @@ class _ProfileScreenState extends State<ProfileScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Row(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(right: 8.0),
-                        child: SvgPicture.asset('assets/Component 9.svg'),
-                      ),
-                      Text('Verify ID',
-                      style: TextStyle(
-                        fontWeight: FontWeight.w500
-                      ),
-                      )
-                    ],
-                  ),
-                  Icon(Icons.arrow_forward_ios,size: 20,color: Colors.grey.shade700,)
-                ],
+              GestureDetector(
+                onTap: (){
+                  Navigator.push(context, MaterialPageRoute(builder: (context){
+                    return VerifyID();
+                  }));
+                },
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(right: 8.0),
+                          child: SvgPicture.asset('assets/Component 9.svg'),
+                        ),
+                        Text('Verify ID',
+                        style: TextStyle(
+                          fontWeight: FontWeight.w500
+                        ),
+                        )
+                      ],
+                    ),
+                    Icon(Icons.arrow_forward_ios,size: 20,color: Colors.grey.shade700,)
+                  ],
+                ),
               ),
               SizedBox(height: 10,),
               Divider(color: Colors.grey.shade200,),
@@ -140,46 +164,60 @@ class _ProfileScreenState extends State<ProfileScreen> {
               SizedBox(height: 10,),
               Divider(color: Colors.grey.shade200,),
               SizedBox(height: 10,),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Row(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(right: 8.0),
-                        child: SvgPicture.asset('assets/Component 11.svg'),
-                      ),
-                      Text('Bookmark Library',
-                        style: TextStyle(
-                            fontWeight: FontWeight.w500
+              GestureDetector(
+                onTap: (){
+                  Navigator.push(context, MaterialPageRoute(builder: (context){
+                    return BookmarkLibrary();
+                  }));
+                },
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(right: 8.0),
+                          child: SvgPicture.asset('assets/Component 11.svg'),
                         ),
-                      )
-                    ],
-                  ),
-                  Icon(Icons.arrow_forward_ios,size: 20,color: Colors.grey.shade700,)
-                ],
+                        Text('Bookmark Library',
+                          style: TextStyle(
+                              fontWeight: FontWeight.w500
+                          ),
+                        )
+                      ],
+                    ),
+                    Icon(Icons.arrow_forward_ios,size: 20,color: Colors.grey.shade700,)
+                  ],
+                ),
               ),
               SizedBox(height: 10,),
               Divider(color: Colors.grey.shade200,),
               SizedBox(height: 10,),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Row(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(right: 8.0),
-                        child: SvgPicture.asset('assets/Frame 44266.svg'),
-                      ),
-                      Text('Withdrawal',
-                        style: TextStyle(
-                            fontWeight: FontWeight.w500
+              GestureDetector(
+                onTap: (){
+                  Navigator.push(context, MaterialPageRoute(builder: (context){
+                    return Withdrawal();
+                  }));
+                },
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(right: 8.0),
+                          child: SvgPicture.asset('assets/Frame 44266.svg'),
                         ),
-                      )
-                    ],
-                  ),
-                  Icon(Icons.arrow_forward_ios,size: 20,color: Colors.grey.shade700,)
-                ],
+                        Text('Withdrawal',
+                          style: TextStyle(
+                              fontWeight: FontWeight.w500
+                          ),
+                        )
+                      ],
+                    ),
+                    Icon(Icons.arrow_forward_ios,size: 20,color: Colors.grey.shade700,)
+                  ],
+                ),
               ),
               SizedBox(height: 10,),
               Divider(color: Colors.grey.shade200,),

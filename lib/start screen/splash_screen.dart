@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gagna/main%20screens/main_home.dart';
-import 'package:gagna/start%20screen/home.dart';
+
 import 'package:go_router/go_router.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:video_player/video_player.dart';

@@ -39,32 +39,35 @@ class _CarouselWidgetState extends State<CarouselWidget> {
         width: MediaQuery.of(context).size.width,
         decoration: BoxDecoration(
           image: DecorationImage(
-              image: AssetImage('assets/unsplash_4ojhpgKpS68.png',),
+              image: AssetImage('assets/unsplash_4ojhpgKpS68-min (1).png',),
             fit: BoxFit.fill
           )
         ),
         child: Column(
           children: [
             SizedBox(
-              height: MediaQuery.of(context).size.height*0.55,),
+              height: _deviceInfo > 27?MediaQuery.of(context).size.height*0.55:
+              MediaQuery.of(context).size.height*0.45,
+            ),
             SizedBox(height: 25,),
             SizedBox(
               width: MediaQuery.of(context).size.width*0.9,
-              child: const Text('Tailored Investment Options for Every Investor',
+              child: const Text('Unlock The Power 0f Real Estate Investing',
               style: TextStyle(
                 fontSize: 25,
-                fontWeight: FontWeight.w600
+                fontWeight: FontWeight.w600,
+                color: Colors.white
               ),
               ),
             ),
             const SizedBox(height: 20,),
             SizedBox(
               width: MediaQuery.of(context).size.width*0.9,
-              child: const Text('Explore a diverse range of real estate investment opportunities'
-                  'meticulously curated to match your financial goals, risk tolerance,'
-                  'and investment preferences',
+              child: const Text('Explore Gagna,'
+                  ' the platform that lets you invest in real estate without'
+                  ' the trouble of buying one yourself.',
                 style: TextStyle(
-                  color: Colors.grey,
+                  color: Colors.white,
                   fontSize: 15.5
                 ),
               ),
@@ -77,32 +80,34 @@ class _CarouselWidgetState extends State<CarouselWidget> {
        width: MediaQuery.of(context).size.width,
        decoration: BoxDecoration(
          image: DecorationImage(
-             image: AssetImage('assets/unsplash_tf2WLWYFtyg.png'),
+             image: AssetImage('assets/unsplash_tf2WLWYFtyg-min-1.png'),
            fit: BoxFit.fill
          )
        ),
         child: Column(
           children: [
             SizedBox(
-              height: MediaQuery.of(context).size.height*0.55,),
+              height: _deviceInfo > 27?MediaQuery.of(context).size.height*0.55:
+              MediaQuery.of(context).size.height*0.45,
+            ),
             SizedBox(height: 25,),
             SizedBox(
               width: MediaQuery.of(context).size.width*0.9,
-              child: const Text('Seamless Onboarding Process',
+              child: const Text('Building Wealth, One Share At A Time',
                 style: TextStyle(
                     fontSize: 25,
-                    fontWeight: FontWeight.w600
+                    fontWeight: FontWeight.w600,
+                  color: Colors.white
                 ),
               ),
             ),
             const SizedBox(height: 20,),
             SizedBox(
               width: MediaQuery.of(context).size.width*0.9,
-              child:  const Text('Experience a smooth and hassle-free onboarding process with Ganga.'
-                  'Our intuitive platform guides you through every step, from account setup to'
-                  'property selection',
+              child:  const Text('Spread your investment, earn high returns and'
+                  ' easily buy ,sell and manage shares in trusted real estate.',
                 style: TextStyle(
-                    color: Colors.grey,
+                    color: Colors.white,
                     fontSize: 15.5
                 ),
               ),
@@ -114,31 +119,35 @@ class _CarouselWidgetState extends State<CarouselWidget> {
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
         decoration: BoxDecoration(
-          image: DecorationImage(image: AssetImage('assets/unsplash_hDJT_ERrB-w.png'),
+          image: DecorationImage(image: AssetImage('assets/unsplash_hDJT_ERrB-w-min.png'),
           fit: BoxFit.fill
           )
         ),
         child: Column(
           children: [
             SizedBox(
-              height: MediaQuery.of(context).size.height*0.55,),
+              height: _deviceInfo > 27?MediaQuery.of(context).size.height*0.55:
+              MediaQuery.of(context).size.height*0.45,
+            ),
             SizedBox(height: 25,),
             SizedBox(
               width: MediaQuery.of(context).size.width*0.9,
-              child: const Text('Transparent Investment Insights',
+              child: const Text('Invest More, Grow Richer',
                 style: TextStyle(
                     fontSize: 25,
-                    fontWeight: FontWeight.w600
+                    fontWeight: FontWeight.w600,
+                  color: Colors.white
                 ),
               ),
             ),
             const SizedBox(height: 20,),
             SizedBox(
               width: MediaQuery.of(context).size.width*0.9,
-              child:  const Text('Gain access to comprehensive data, analytics, and market insights to make'
-                  'informed investment decisions with Ganga\'s transparent approach',
+              child:  const Text('Take Charge of your financial future! Start '
+                  'building wealth today by investing any amount you '
+                  'want in secure real estate.',
                 style: TextStyle(
-                    color: Colors.grey,
+                    color: Colors.white,
                     fontSize: 15.5
                 ),
               ),
