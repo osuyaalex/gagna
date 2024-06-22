@@ -71,9 +71,11 @@ class _VerifyIDState extends State<VerifyID> {
                   errorStyle: const TextStyle(fontSize: 0.01),
                   contentPadding:const EdgeInsets.only(top: 5, left: 10),
                   hintStyle: const TextStyle(
-                      fontSize: 12.5
+                      fontSize: 12.5,
+                    height: 5
                   ),
                   hintText: 'Select ID',
+
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(7),
                       borderSide:  BorderSide(

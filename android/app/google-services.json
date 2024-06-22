@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1033822299654",
+    "project_id": "gagna-3c957",
+    "storage_bucket": "gagna-3c957.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1033822299654:android:2e024279d9c1615a580587",
+        "android_client_info": {
+          "package_name": "com.company.gagna"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCSZfAGhp6j-5uO8gkXkliRbG75w7tWYlE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:gagna/network/forgot_password.dart';
 import 'package:gagna/network/login_json.dart';
 import 'package:gagna/network/register_json.dart';
 import 'package:gagna/network/url.dart';
@@ -219,5 +220,54 @@ class Network{
     }
 
     return LoginJson.fromJson(jsonResponse);
+  }
+
+  Future<ForgotPassword> forgotPassword( String email, BuildContext context) async {
+    var jsonResponse;
+    try {
+      String url = "$apiUrl/forgot-password/";
+      final response = await http.post(Uri.parse(url),
+        headers: {
+          'accept': 'application/json',
+          'Content-Type': 'application/json',
+          'X-CSRFTOKEN': '3OXJj3GwQIp64OGKcUXmsgf4VpNzf3DjvWDMqCGDDxJMfW7wJkU0Se7ygSwbSIrR',
+        },
+        body: jsonEncode({
+          "email": email
+        }),
+      );
+
+      print('hhhhhhhhhhhh');
+      print(jsonDecode(response.body));
+      if (response.statusCode == 200) {
+        jsonResponse = jsonDecode(response.body);
+      }else if (response.statusCode == 400) {
+        jsonResponse = jsonDecode(response.body);
+      } else if (response.statusCode == 201) {
+        jsonResponse = jsonDecode(response.body);
+      }else {
+        throw Exception('Failed to load actions');
+      }
+    } catch (error) {
+      String errorMessage = error.toString();
+      print('the error isissssssisisisis ${errorMessage}');
+      if (errorMessage.contains('Failed host lookup')) {
+        EasyLoading.dismiss();
+        snack(context, "Connection is down currently");
+      } else if (errorMessage.contains('DOCTYPE HTML')) {
+        EasyLoading.dismiss();
+        snack(context, "something went wrong");
+      } else if (errorMessage.contains('roken')) {
+        EasyLoading.dismiss();
+        snack(context, "something went wrong");
+      } else if (errorMessage.contains('Connection reset by peer')) {
+        EasyLoading.dismiss();
+        snack(context, "something went wrong");
+      } else {
+        snack(context, errorMessage);
+      }
+    }
+
+    return ForgotPassword.fromJson(jsonResponse);
   }
 }

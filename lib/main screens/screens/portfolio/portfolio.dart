@@ -259,7 +259,7 @@ class _PortfolioScreenState extends State<PortfolioScreen>with SingleTickerProvi
         ),
       ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 25.0),
+        padding: const EdgeInsets.symmetric(horizontal: 18.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

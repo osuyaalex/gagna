@@ -6,6 +6,7 @@ import 'package:gagna/main%20screens/screens/profile/edit/edit_profile.dart';
 import 'package:gagna/main%20screens/screens/profile/security_and_privacy/security_privacy.dart';
 import 'package:gagna/main%20screens/screens/profile/verify_id/verify_id.dart';
 import 'package:gagna/main%20screens/screens/profile/withdrawal/withdrawal.dart';
+import 'package:gagna/main%20screens/screens/referral/referral.dart';
 import 'package:gagna/start%20screen/widgets/elevated_button.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -142,24 +143,31 @@ class _ProfileScreenState extends State<ProfileScreen> {
               SizedBox(height: 10,),
               Divider(color: Colors.grey.shade200,),
               SizedBox(height: 10,),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Row(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(right: 8.0),
-                        child: SvgPicture.asset('assets/Component 10.svg'),
-                      ),
-                      Text('Referral',
-                        style: TextStyle(
-                            fontWeight: FontWeight.w500
+              GestureDetector(
+                onTap: (){
+                  Navigator.push(context, MaterialPageRoute(builder: (context){
+                    return Referraal();
+                  }));
+                },
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(right: 8.0),
+                          child: SvgPicture.asset('assets/Component 10.svg'),
                         ),
-                      )
-                    ],
-                  ),
-                  Icon(Icons.arrow_forward_ios,size: 20,color: Colors.grey.shade700,)
-                ],
+                        Text('Referral',
+                          style: TextStyle(
+                              fontWeight: FontWeight.w500
+                          ),
+                        )
+                      ],
+                    ),
+                    Icon(Icons.arrow_forward_ios,size: 20,color: Colors.grey.shade700,)
+                  ],
+                ),
               ),
               SizedBox(height: 10,),
               Divider(color: Colors.grey.shade200,),
