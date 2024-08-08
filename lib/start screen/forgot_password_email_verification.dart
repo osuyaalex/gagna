@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:gagna/network/network.dart';
+import 'package:gagna/start%20screen/reset_password_otp.dart';
 import 'package:gagna/start%20screen/widgets/elevated_button.dart';
+import 'package:gagna/utilities/snackbar.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ForgotPasswordEmailVerification extends StatefulWidget {
   const ForgotPasswordEmailVerification({super.key});
@@ -115,7 +118,17 @@ class _ForgotPasswordEmailVerificationState extends State<ForgotPasswordEmailVer
                     setState(() {
                       _loadingIndicator = true;
                     });
-
+                    Network().forgotPassword(_email.text, context).then((v){
+                      if(v.message != null){
+                        setState(() {
+                          _loadingIndicator = false;
+                        });
+                        snack(context, v.message!);
+                        Navigator.push(context, MaterialPageRoute(builder: (context){
+                          return ResetPasswordOtp( token: v.token!);
+                        }));
+                      }
+                    });
                   },
                   textColor: Colors.white,
                   width: MediaQuery.of(context).size.width,

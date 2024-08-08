@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gagna/network/network.dart';
@@ -171,14 +170,15 @@ class _VerificationPageState extends State<VerificationPage> {
                 buttonColor: const Color(0xff005E5E),
                 text: 'Continue',
                 onPressed: (){
-                  EasyLoading.show();
                   if(_otp != null){
                     setState(() {
                       _loadingIndicator = true;
                     });
                     Network().verification_otp(widget.email, _otp!, context).then((value){
                       if (value.success!) {
-                        EasyLoading.dismiss();
+                        setState(() {
+                          _loadingIndicator = false;
+                        });
                         shortSnack(context, value.data!.detail);
                         Navigator.push(context, MaterialPageRoute(builder: (context) {
                           return InformationPage(email: widget.email, otp: _otp!);

@@ -8,6 +8,10 @@ import 'package:gagna/main%20screens/screens/profile/verify_id/verify_id.dart';
 import 'package:gagna/main%20screens/screens/profile/withdrawal/withdrawal.dart';
 import 'package:gagna/main%20screens/screens/referral/referral.dart';
 import 'package:gagna/start%20screen/widgets/elevated_button.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import '../../../network/network.dart';
+import '../../../network/profile.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -20,6 +24,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
   String _placeHolderUrl = 'https://cdn.vectorstock.com/i/500p/63/42/avatar-photo-placeholder-icon-design-vector-30916342.jpg';
   DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
   dynamic _deviceInfo = 0;
+  String? _access;
+  ProfileDetail? _profile;
 
   deviceVersion()async{
     AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
@@ -32,11 +38,34 @@ class _ProfileScreenState extends State<ProfileScreen> {
     }
   }
 
+  Future _getKeys() async {
+    SharedPreferences shared = await SharedPreferences.getInstance();
+    setState(() {
+      _access = shared.getString("accessToken");
+
+    });
+  }
+  Future _getProfile()async {
+    Network().getProfile(_access!, context).then((v){
+      if(v.success == true){
+        setState(() {
+          _profile = v.data!.detail;
+        });
+      }
+    });
+  }
+  Future _getInfo()async{
+    await _getKeys();
+    print(_access);
+    _getProfile();
+  }
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     deviceVersion();
+    _getInfo();
   }
 
   @override
@@ -78,12 +107,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         color: Colors.black
                     ),
                   ),
-                  Text('Name',
+                  Text("${_profile?.firstName??''} ${_profile?.lastName??''}",
                     style: TextStyle(
                         color: Colors.black
                     ),
                   ),
-                  Text('example@gmail.com',
+                  Text(_profile?.email??'',
                     style: TextStyle(
                         color: Colors.black,
                       fontSize: 14
@@ -98,7 +127,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         }));
                       },
                       textColor: Colors.white,
-                      width: _deviceInfo >27?MediaQuery.of(context).size.width*0.3:MediaQuery.of(context).size.width*0.36,
+                      width: _deviceInfo >27?MediaQuery.of(context).size.width*0.36:MediaQuery.of(context).size.width*0.4,
                     minSize: true,
                     textOrIndicator: false,
                   )

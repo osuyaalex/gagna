@@ -103,18 +103,26 @@ class _PortfolioScreenState extends State<PortfolioScreen>with SingleTickerProvi
                     height: MediaQuery.of(context).size.width*0.28,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
-                      border: Border.all(
-                        color: Color(0xff005E5E),
-                      ),
+                      color: Color(0xff005E5E),
                     ),
                     child: Stack(
                       children: [
+                        Positioned(
+                            right: 1,
+                            bottom: 1,
+                            child: SvgPicture.asset('assets/Line 96.svg')
+                        ),
+                        Positioned(
+                            left: 25,
+                            top: 1,
+                            child: SvgPicture.asset('assets/Ellipse 2053.svg')
+                        ),
                         Positioned(
                           left: 18,
                           top: 15,
                           child: Text('Total Portfolio Value',
                             style: TextStyle(
-                                color: Color(0xff005E5E),
+                                color: Colors.white,
                               fontWeight: FontWeight.w600
                             ),
                           ),
@@ -126,7 +134,7 @@ class _PortfolioScreenState extends State<PortfolioScreen>with SingleTickerProvi
                             style: TextStyle(
                                 fontWeight: FontWeight.w600,
                                 fontSize: 24,
-                                color: Colors.grey.shade500
+                                color: Colors.white
                             ),
                           ),
                         ),
@@ -141,7 +149,7 @@ class _PortfolioScreenState extends State<PortfolioScreen>with SingleTickerProvi
                                   style: TextStyle(
                                       fontWeight: FontWeight.w600,
                                       fontSize: 10,
-                                      color: Color(0xff005E5E)
+                                      color: Colors.white
                                   ),
                                 ),
                               ),
@@ -153,7 +161,7 @@ class _PortfolioScreenState extends State<PortfolioScreen>with SingleTickerProvi
                                 style: TextStyle(
                                     fontWeight: FontWeight.w600,
                                     fontSize: 14,
-                                    color: Color(0xff005E5E)
+                                    color: Colors.white
                                 ),
                               ),
                             ],
@@ -180,6 +188,16 @@ class _PortfolioScreenState extends State<PortfolioScreen>with SingleTickerProvi
             child: Stack(
               children: [
                 Positioned(
+                    right: 1,
+                    bottom: 1,
+                    child: SvgPicture.asset('assets/Line 96.svg')
+                ),
+                Positioned(
+                    left: 25,
+                    top: 1,
+                    child: SvgPicture.asset('assets/Ellipse 2053.svg')
+                ),
+                Positioned(
                   left: 18,
                   top: 15,
                   child: Row(
@@ -195,7 +213,7 @@ class _PortfolioScreenState extends State<PortfolioScreen>with SingleTickerProvi
                       Text('N 20,000,000',
                         style: TextStyle(
                             fontWeight: FontWeight.w600,
-                            fontSize: 24,
+                            fontSize: 19,
                             color: Colors.white
                         ),
                       ),
@@ -218,7 +236,7 @@ class _PortfolioScreenState extends State<PortfolioScreen>with SingleTickerProvi
                       Text('3',
                         style: TextStyle(
                             fontWeight: FontWeight.w600,
-                            fontSize: 24,
+                            fontSize: 19,
                             color: Colors.white
                         ),
                       ),
@@ -241,7 +259,7 @@ class _PortfolioScreenState extends State<PortfolioScreen>with SingleTickerProvi
                       Text('N 1,000,000',
                         style: TextStyle(
                             fontWeight: FontWeight.w600,
-                            fontSize: 24,
+                            fontSize: 19,
                             color: Colors.white
                         ),
                       ),

@@ -4,6 +4,8 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gagna/main%20screens/main_home.dart';
 import 'package:gagna/network/network.dart';
+import 'package:gagna/start%20screen/forgot_password_email_verification.dart';
+import 'package:gagna/start%20screen/signup_page.dart';
 import 'package:gagna/start%20screen/widgets/elevated_button.dart';
 import 'package:gagna/utilities/snackbar.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -181,7 +183,11 @@ class _LoginPageState extends State<LoginPage> {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     TextButton(
-                        onPressed: (){},
+                        onPressed: (){
+                          Navigator.push(context, MaterialPageRoute(builder: (context){
+                            return ForgotPasswordEmailVerification();
+                          }));
+                        },
                         child: const Text('Forgot Password?',
                         style: TextStyle(
                           color: Colors.black
@@ -208,6 +214,7 @@ class _LoginPageState extends State<LoginPage> {
                                 EasyLoading.dismiss();
                                 await shared.setString('accessToken', value.data!.detail!.access!);
                                 await  shared.setString('refreshToken', value.data!.detail!.refresh!);
+
                                 Navigator.push(context, MaterialPageRoute(builder: (context){
                                   return MainHome();
                                 }));
@@ -230,7 +237,7 @@ class _LoginPageState extends State<LoginPage> {
                 SizedBox(height: 25,),
                 RichText(
                     text: TextSpan(
-                        text: 'New to Ganga? ',
+                        text: 'New to Gagna? ',
                         style: const TextStyle(
                             color: Colors.black,
                             fontWeight: FontWeight.w300,
@@ -244,7 +251,11 @@ class _LoginPageState extends State<LoginPage> {
                                 //decoration: TextDecoration.underline,
                               ),
                               recognizer: TapGestureRecognizer()
-                                ..onTap = (){}
+                                ..onTap = (){
+                                  Navigator.push(context, MaterialPageRoute(builder: (context){
+                                    return SignUpPage();
+                                  }));
+                                }
                           )
                         ]
                     )

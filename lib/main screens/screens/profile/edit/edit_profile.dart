@@ -1,7 +1,9 @@
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../../../start screen/widgets/elevated_button.dart';
+import '../../../../network/network.dart';
+import '../../../../network/profile.dart';
 
 class EditProfile extends StatefulWidget {
   const EditProfile({super.key});
@@ -14,6 +16,8 @@ class _EditProfileState extends State<EditProfile> {
   String _placeHolderUrl = 'https://cdn.vectorstock.com/i/500p/63/42/avatar-photo-placeholder-icon-design-vector-30916342.jpg';
   DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
   dynamic _deviceInfo = 0;
+  String? _access;
+  ProfileDetail? _profile;
 
   deviceVersion()async{
     AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
@@ -24,6 +28,35 @@ class _EditProfileState extends State<EditProfile> {
         print(_deviceInfo);
       });
     }
+  }
+
+  Future _getKeys() async {
+    SharedPreferences shared = await SharedPreferences.getInstance();
+    setState(() {
+      _access = shared.getString("accessToken");
+
+    });
+  }
+  Future _getProfile()async {
+    Network().getProfile(_access!, context).then((v){
+      if(v.success == true){
+        setState(() {
+          _profile = v.data!.detail;
+        });
+      }
+    });
+  }
+  Future _getInfo()async{
+    await _getKeys();
+    print(_access);
+    _getProfile();
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _getInfo();
   }
   @override
   Widget build(BuildContext context) {
@@ -65,7 +98,7 @@ class _EditProfileState extends State<EditProfile> {
                         color: Colors.black
                     ),
                   ),
-                  Text('Name',
+                  Text("${_profile?.firstName??''} ${_profile?.lastName??''}",
                     style: TextStyle(
                         color: Colors.black
                     ),
@@ -90,7 +123,7 @@ class _EditProfileState extends State<EditProfile> {
                         fontWeight: FontWeight.w600
                     ),
                   ),
-                  Text('First',
+                  Text(_profile?.firstName??'',
                     style: TextStyle(
                         fontWeight: FontWeight.w600,
                       color: Color(0xff005E5E)
@@ -109,7 +142,7 @@ class _EditProfileState extends State<EditProfile> {
                         fontWeight: FontWeight.w600
                     ),
                   ),
-                  Text('Sur',
+                  Text(_profile?.lastName??'',
                     style: TextStyle(
                         fontWeight: FontWeight.w600,
                         color: Color(0xff005E5E)
@@ -128,7 +161,7 @@ class _EditProfileState extends State<EditProfile> {
                         fontWeight: FontWeight.w600
                     ),
                   ),
-                  Text('example@gmail.com',
+                  Text(_profile?.email??'',
                     style: TextStyle(
                         fontWeight: FontWeight.w600,
                         color: Color(0xff005E5E)
@@ -147,7 +180,7 @@ class _EditProfileState extends State<EditProfile> {
                         fontWeight: FontWeight.w600
                     ),
                   ),
-                  Text('06060500403',
+                  Text(_profile?.phoneNumber??'',
                     style: TextStyle(
                         fontWeight: FontWeight.w600,
                         color: Color(0xff005E5E)

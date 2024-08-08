@@ -17,6 +17,7 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
     SharedPreferences shared = await SharedPreferences.getInstance();
     setState(() {
       _access = shared.getString("accessToken");
+
     });
   }
 
