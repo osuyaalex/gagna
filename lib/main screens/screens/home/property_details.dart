@@ -16,12 +16,16 @@ class PropertyDetails extends StatefulWidget {
 class _PropertyDetailsState extends State<PropertyDetails> {
   final String _niceHouse = 'https://thumbor.forbes.com/thumbor/fit-in/x/https://www.forbes.com/home-improvement/wp-content/uploads/2022/08/kiawah_island-realtor.jpg';
   Detail? _description;
+  double percentage = 0;
   Future _getPropertyDescription()async{
     Network().propertyDescription(
         widget.idNumber, context).then((v){
           if(v.success == true){
            setState(() {
              _description = v.data?.detail;
+             int sharesSold = v.data?.detail?.sharesSold ?? 0;
+             int totalShares = v.data?.detail?.totalShares ?? 1;
+             percentage = (sharesSold / totalShares) * 100;
            });
           }
     });
@@ -36,10 +40,7 @@ class _PropertyDetailsState extends State<PropertyDetails> {
   }
   @override
   Widget build(BuildContext context) {
-    int sharesSold = _description?.sharesSold ?? 0;
-    int totalShares = _description?.totalShares ?? 1;
-
-    double percentage = (sharesSold / totalShares) * 100;
+    print(percentage);
     String formatNumber(String number) {
       var convertedNumber = double.parse(number);
       final formatter = NumberFormat('#,###.##');
@@ -117,7 +118,7 @@ class _PropertyDetailsState extends State<PropertyDetails> {
                   DescriptionContainers(
                       text: "Starting Share Price",
                       value: Text(
-                        '₦${formatNumber(_description?.sharesSold?.toString()??'0')}',
+                        '₦${formatNumber(_description?.pricePerShare?.toString()??'0')}',
                         style: const TextStyle(
                             fontWeight: FontWeight.w600,
                             color: Color(0xff005E5E)
@@ -135,7 +136,7 @@ class _PropertyDetailsState extends State<PropertyDetails> {
                   ),
                   DescriptionContainers(
                       text: "Shares Sold",
-                      value: Text('${_description?.sharesSold.toString()??''}%',
+                      value: Text('${_description?.sharesSold.toString()??''}',
                         style: const TextStyle(
                             fontWeight: FontWeight.w600,
                             color: Color(0xff005E5E)
@@ -152,9 +153,9 @@ class _PropertyDetailsState extends State<PropertyDetails> {
                       )
                   ),
                   DescriptionContainers(
-                    text: "Starting Share Price",
+                    text: "Total Shares",
                     value: Text(
-                      '₦${formatNumber(_description?.totalShares?.toString()??'0')}',
+                      '${formatNumber(_description?.totalShares?.toString()??'0')}',
                       style: const TextStyle(
                           fontWeight: FontWeight.w600,
                           color: Color(0xff005E5E)

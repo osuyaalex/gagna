@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gagna/main%20screens/screens/home/property_details.dart';
+import 'package:gagna/main%20screens/screens/home/widget/shimmer.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:staggered_grid_view_flutter/widgets/staggered_grid_view.dart';
 import 'package:staggered_grid_view_flutter/widgets/staggered_tile.dart';
@@ -238,7 +239,9 @@ class _InvestmentSeeMoreState extends State<InvestmentSeeMore> {
               );
             },
             staggeredTileBuilder:  (context) => const StaggeredTile.fit(1)
-        ):Container(),
+        ):Center(
+          child: CircularProgressIndicator(),
+        ),
       ),
     );
   }

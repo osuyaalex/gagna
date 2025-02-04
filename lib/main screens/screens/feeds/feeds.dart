@@ -192,7 +192,7 @@ class _FeedsScreenState extends State<FeedsScreen> {
                                           children: [
                                             Padding(
                                               padding: const EdgeInsets.only(bottom: 1.0),
-                                              child: Text('\$ ${_detail![index].pricePerShare}',
+                                              child: Text('\₦ ${_detail![index].pricePerShare}',
                                                 style: TextStyle(
                                                     fontWeight: FontWeight.w600
                                                 ),

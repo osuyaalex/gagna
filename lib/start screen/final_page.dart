@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gagna/main%20screens/main_home.dart';
+import 'package:gagna/start%20screen/login_page.dart';
 import 'package:gagna/start%20screen/widgets/elevated_button.dart';
 
 class FinalPage extends StatefulWidget {
@@ -66,10 +67,10 @@ class _FinalPageState extends State<FinalPage> {
             SizedBox(height: 30,),
             Button(
                 buttonColor: const Color(0xff005E5E),
-                text: 'Go to homepage',
+                text: 'Login To Account',
                 onPressed: (){
                   Navigator.push(context, MaterialPageRoute(builder: (context){
-                    return MainHome();
+                    return LoginPage();
                   }));
                 },
                 textColor: Colors.white,

@@ -6,6 +6,7 @@ import 'package:gagna/main%20screens/notification.dart';
 import 'package:gagna/main%20screens/screens/home/blog_details.dart';
 import 'package:gagna/main%20screens/screens/home/investment_see_more.dart';
 import 'package:gagna/main%20screens/screens/home/property_details.dart';
+import 'package:gagna/main%20screens/screens/home/widget/shimmer.dart';
 import 'package:gagna/main%20screens/screens/progress_bar.dart';
 import 'package:gagna/network/network.dart';
 import 'package:gagna/network/profile.dart';
@@ -307,7 +308,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                       children: [
                                         Padding(
                                           padding: const EdgeInsets.only(bottom: 1.0),
-                                          child: Text('\$ ${_detail![index].pricePerShare}',
+                                          child: Text('\₦ ${_detail![index].pricePerShare}',
                                             style: TextStyle(
                                               fontWeight: FontWeight.w600
                                             ),
@@ -367,9 +368,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     );
                     }
                 ),
-              ):Center(
-                child: CircularProgressIndicator(color: Color(0xff005E5E),),
-              ),
+              ):HorizontalShimmerScreen(),
 
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 14.0),
@@ -454,7 +453,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                           );
                         }
-                    ):Container()
+                    ):NewsFeedShimmer()
                   ],
                 ),
               )
