@@ -181,7 +181,9 @@ class _PaymentInformationState extends State<PaymentInformation> {
                   text: 'continue',
                   onPressed: (){},
                   textColor: Colors.white,
-                  width: MediaQuery.of(context).size.width
+                  width: MediaQuery.of(context).size.width,
+                minSize: false,
+                textOrIndicator: false,
               )
             ],
           ),

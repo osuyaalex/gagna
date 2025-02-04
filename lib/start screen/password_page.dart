@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gagna/network/network.dart';
 import 'package:gagna/start%20screen/final_page.dart';
@@ -29,6 +28,7 @@ class _PasswordPageState extends State<PasswordPage> {
   bool hasUpperCaseAndLowerCase = false;
   bool hasNumber = false;
   bool containsSixChar = false;
+  bool _loadingIndicator = false;
   @override
   Widget build(BuildContext context) {
     return  Form(
@@ -162,7 +162,7 @@ class _PasswordPageState extends State<PasswordPage> {
                       }
                       return null;
                     },
-                    obscureText: _obscureText,
+                    obscureText: _obscureComfirmText,
                     decoration: InputDecoration(
                       suffixIcon: IconButton(
                           onPressed: (){
@@ -170,7 +170,7 @@ class _PasswordPageState extends State<PasswordPage> {
                               _obscureComfirmText = !_obscureComfirmText;
                             });
                           },
-                          icon: _obscureText? Icon(Icons.visibility_outlined, color: Colors.grey.shade400,):Icon(Icons.visibility_off_outlined,color: Colors.grey.shade400,)
+                          icon: _obscureComfirmText? Icon(Icons.visibility_outlined, color: Colors.grey.shade400,):Icon(Icons.visibility_off_outlined,color: Colors.grey.shade400,)
                       ),
             
                       hintStyle: TextStyle(
@@ -282,7 +282,9 @@ class _PasswordPageState extends State<PasswordPage> {
                     onPressed: (){
                       if(_password.text == _comfirmPassword.text){
                         if(hasNumber && hasUpperCaseAndLowerCase && containsSixChar){
-                          EasyLoading.show();
+                          setState(() {
+                            _loadingIndicator = true;
+                          });
                           Network().registration(
                               widget.email,
                               _password.text,
@@ -293,12 +295,16 @@ class _PasswordPageState extends State<PasswordPage> {
                               widget.phoneNumber, context
                           ).then((value){
                             if(value.success == true){
-                              EasyLoading.dismiss();
+                              setState(() {
+                                _loadingIndicator = false;
+                              });
                               Navigator.push(context, MaterialPageRoute(builder: (context){
                                 return FinalPage();
                               }));
                             }else if(value.success == false){
-                              EasyLoading.dismiss();
+                              setState(() {
+                                _loadingIndicator = false;
+                              });
                               if(value.error!.message!.detail!.email!.isNotEmpty){
                                 shortSnack(context, value.error!.message!.detail!.email![0]);
                               }
@@ -327,7 +333,9 @@ class _PasswordPageState extends State<PasswordPage> {
                       }
                     },
                     textColor: Colors.white,
-                    width: MediaQuery.of(context).size.width
+                    width: MediaQuery.of(context).size.width,
+                  minSize: false,
+                  textOrIndicator: _loadingIndicator,
                 ),
             
               ],

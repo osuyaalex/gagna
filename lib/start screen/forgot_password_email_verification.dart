@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:gagna/network/network.dart';
+import 'package:gagna/start%20screen/reset_password_otp.dart';
 import 'package:gagna/start%20screen/widgets/elevated_button.dart';
+import 'package:gagna/utilities/snackbar.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ForgotPasswordEmailVerification extends StatefulWidget {
   const ForgotPasswordEmailVerification({super.key});
@@ -13,6 +16,7 @@ class ForgotPasswordEmailVerification extends StatefulWidget {
 class _ForgotPasswordEmailVerificationState extends State<ForgotPasswordEmailVerification> {
   TextEditingController _email = TextEditingController();
   GlobalKey<FormState> _key = GlobalKey<FormState>();
+  bool _loadingIndicator = false;
   @override
   Widget build(BuildContext context) {
     return  Form(
@@ -111,11 +115,25 @@ class _ForgotPasswordEmailVerificationState extends State<ForgotPasswordEmailVer
                   buttonColor: const Color(0xff005E5E),
                   text: 'Continue',
                   onPressed: (){
-                    EasyLoading.show();
-
+                    setState(() {
+                      _loadingIndicator = true;
+                    });
+                    Network().forgotPassword(_email.text, context).then((v){
+                      if(v.message != null){
+                        setState(() {
+                          _loadingIndicator = false;
+                        });
+                        snack(context, v.message!);
+                        Navigator.push(context, MaterialPageRoute(builder: (context){
+                          return ResetPasswordOtp( token: v.token!);
+                        }));
+                      }
+                    });
                   },
                   textColor: Colors.white,
-                  width: MediaQuery.of(context).size.width
+                  width: MediaQuery.of(context).size.width,
+                minSize: false,
+                textOrIndicator: _loadingIndicator,
               ),
 
             ],
